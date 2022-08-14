@@ -73,7 +73,7 @@ impl<'a> CityScores<'a> {
         let categories = json["categories"].as_array().unwrap().clone();
         let mut result = Text::raw("");
         for scores in categories {
-            let name = scores["name"].clone();
+            let name = scores["name"].as_str().unwrap();
             let score = scores["score_out_of_10"].as_f64().unwrap();
             let scorecolor = if score <= 4.0 {
                 Color::Red
