@@ -83,7 +83,7 @@ impl<'a> CityScores<'a> {
                 Color::Green
             };
             let scoreformat = format!("{score}/10");
-            let scoretext = Text::styled(format!("{scoreformat}"), Style::default().fg(scorecolor));
+            let scoretext = Text::styled(scoreformat, Style::default().fg(scorecolor));
             let mut restext = Text::raw(format!("{}: ", name));
             restext.extend(scoretext);
 
@@ -109,7 +109,7 @@ impl<'a> CitySalaries<'a> {
                 job["salary_percentiles"]["percentile_50"].as_f64().unwrap()
             );
             let salarycolor = Color::Green;
-            let salarytext = Text::styled(format!("{}", salary), Style::default().fg(salarycolor));
+            let salarytext = Text::styled(salary.to_string(), Style::default().fg(salarycolor));
             let name = job["job"]["title"].as_str().unwrap();
             let mut restext = Text::raw(format!("{}: ", name));
             restext.extend(salarytext);

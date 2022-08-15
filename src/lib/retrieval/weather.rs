@@ -17,13 +17,13 @@ impl WeatherData {
         let json: Value = serde_json::from_str(text.as_str()).unwrap();
         let tempvec = json["hourly"]["temperature_2m"].as_array().unwrap();
         let mut temp: f64 = 0.0;
-        for i in 0..24 {
-            temp += tempvec[i].as_f64().unwrap();
+        for item in tempvec.iter().take(24) {
+            temp += item.as_f64().unwrap();
         }
-        temp = temp / 24.0;
+        temp /= 24.0;
         Self {
-            langitude: lan.clone(),
-            longitude: lon.clone(),
+            langitude: *lan,
+            longitude: *lon,
             avg_24_h: temp,
         }
     }
